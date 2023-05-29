@@ -4,11 +4,12 @@ function App() {
     const [value, setValue] = useState('');
     const [tasks, setTasks] = useState([]);
 
-    function getId(){
+    function getId() {
         if (!tasks.length) return 1;
 
-        return Math.max(...tasks.map((task) => task.id)) +1
+        return Math.max(...tasks.map((task) => task.id)) + 1
     }
+
     function handleInput(event) {
         setValue(event.target.value);
     }
@@ -24,8 +25,11 @@ function App() {
         }
     }
 
-    function handleDelete(event) {
-
+    function handleDelete(taskToDelete) {
+        return () => {
+            const newTasks = tasks.filter((task) => task !== taskToDelete);
+            setTasks(newTasks);
+        }
     }
 
     return (
@@ -35,15 +39,15 @@ function App() {
                    value={value}
                    onChange={handleInput}
                    onKeyUp={handleAddTask}
-
             />
             <ul>
                 {tasks.map((task) => (
                     <li key={task.id}>
                         <span>{task.name}</span>
                         <button
-                        onClick={handleDelete}
-                        >delete</button>
+                            onClick={handleDelete(task)}
+                        >delete
+                        </button>
                     </li>
                 ))}
             </ul>
