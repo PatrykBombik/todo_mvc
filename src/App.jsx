@@ -40,6 +40,10 @@ function App() {
         }
     }
 
+    function handleDeleteDoneTasks(){
+        setTasks(tasks.filter((task) => task.status !== 'done'));
+    }
+
     return (
         <>
             <h1>ToDo's</h1>
@@ -52,8 +56,8 @@ function App() {
                 {tasks.map((task) => (
                     <li key={task.id}>
                         <button
-                        onClick={handleChangeStatus(task)}
-                        className={task.status === 'active' ? 'active' : 'done'}
+                            onClick={handleChangeStatus(task)}
+                            className={task.status === 'active' ? 'active' : 'done'}
                         >{task.status}</button>
                         <span>{task.name}</span>
                         <button
@@ -63,6 +67,12 @@ function App() {
                     </li>
                 ))}
             </ul>
+
+            {tasks.some((task) => task.status === 'done') && (
+                <button
+                onClick={handleDeleteDoneTasks}
+                >Clear completed</button>
+            )}
         </>
     )
 }

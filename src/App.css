@@ -1,14 +1,13 @@
 .active, .done {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: inline-block;
-  border: 1px solid darkgray;
-  background-color: #fff;
-  overflow: hidden;
-  text-indent: -999px;
-}
-.active {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid darkgray;
+    background-color: #fff;
+    overflow: hidden;
+    text-indent: -999px;
+    margin-right: 10px;
 }
 
 .done {
